@@ -2,41 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Academic Portfolio Design System - Professional & Sophisticated */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Academic color palette */
+    --background: 0 0% 99%;
+    --foreground: 220 13% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 13% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 13% 18%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 221 83% 63%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 20% 95%;
+    --secondary-foreground: 220 13% 18%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 220 9% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 212 95% 95%;
+    --accent-foreground: 221 83% 53%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
 
-    --radius: 0.5rem;
+    /* Academic gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(221 83% 63%) 50%, hsl(212 95% 85%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(210 20% 98%) 100%);
+    
+    /* Professional shadows */
+    --shadow-elegant: 0 10px 25px -5px hsl(221 83% 53% / 0.1), 0 8px 10px -6px hsl(221 83% 53% / 0.1);
+    --shadow-card: 0 4px 6px -1px hsl(220 13% 18% / 0.1), 0 2px 4px -2px hsl(220 13% 18% / 0.1);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.15);
+
+    /* Typography */
+    --font-academic: 'Inter', 'system-ui', sans-serif;
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +118,52 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-academic);
+    line-height: 1.6;
+  }
+
+  /* Academic Portfolio Custom Styles */
+  .academic-hero {
+    background: var(--gradient-hero);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .academic-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+  }
+
+  .academic-card:hover {
+    box-shadow: var(--shadow-elegant);
+    transform: translateY(-2px);
+  }
+
+  .academic-gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .research-highlight {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .research-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .research-highlight:hover::before {
+    left: 100%;
   }
 }
