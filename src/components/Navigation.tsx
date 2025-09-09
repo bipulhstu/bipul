@@ -17,13 +17,13 @@ const Navigation = () => {
   const menuItems = [
     { id: 'hero', label: 'Home' },
     { id: 'research-interests', label: 'Research Interests' },
-    { id: 'academic-credentials', label: 'Academic Credentials' },
+    { id: 'academic-credentials', label: 'Education' },
     { id: 'research-experience', label: 'Research Experience' },
-    { id: 'work-experience', label: 'Work Experience' },
-    { id: 'teaching-experience', label: 'Teaching Experience' },
+    { id: 'work-experience', label: 'Experience' },
+    // { id: 'teaching-experience', label: 'Teaching Experience' },
     { id: 'publications', label: 'Publications' },
-    { id: 'research-projects', label: 'Research Projects' },
-    { id: 'technical-skills', label: 'Technical Skills' },
+    { id: 'research-projects', label: 'Projects' },
+    { id: 'technical-skills', label: 'Skills' },
     { id: 'coursework', label: 'Coursework' },
     { id: 'leadership', label: 'Leadership' },
     { id: 'references', label: 'References' }
