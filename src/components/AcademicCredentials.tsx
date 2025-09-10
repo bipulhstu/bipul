@@ -1,38 +1,47 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Trophy, FileText, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { GraduationCap, Trophy, FileText, Calendar, ExternalLink } from "lucide-react";
 
 const AcademicCredentials = () => {
   const education = [
     {
       degree: "M.Sc. (Engineering) in Computer Science and Engineering",
+      degreeUrl: "https://hstu.ac.bd/cse/dept_cse",
       institution: "Hajee Mohammad Danesh Science and Technology University",
+      institutionUrl: "https://hstu.ac.bd/",
       location: "Dinajpur, Bangladesh",
       period: "Expected July 2026",
-      gpa: "3.87/4.00 (First Semester)",
+      gpa: "3.85/4.00 (First Semester)",
       supervisor: "Dr. Ashis Kumar Mandal",
+      supervisorUrl: "https://hstu.ac.bd/teacher/ashis",
+      transcriptUrl: "https://drive.google.com/file/d/1-jwXHCTUTpoukCz29jHBGy8Uusk5-teB/view?usp=sharing",
       status: "ongoing"
     },
     {
       degree: "B.Sc. (Engineering) in Electrical and Electronic Engineering",
+      degreeUrl: "https://hstu.ac.bd/cse/eee",
       institution: "Hajee Mohammad Danesh Science and Technology University",
+      institutionUrl: "https://hstu.ac.bd/",
       location: "Dinajpur, Bangladesh",
       period: "December 2019",
       gpa: "2.92/4.00",
+      transcriptUrl: "https://drive.google.com/file/d/1-jwXHCTUTpoukCz29jHBGy8Uusk5-teB/view?usp=sharing",
       status: "completed"
     }
   ];
 
   const testScores = [
     {
-      test: "Graduate Record Examination (GRE)",
+      test: "Graduate Record Examination (GRE) - 1st Attempt",
       date: "15th February, 2024",
       scores: [
         { label: "Total", value: "305" },
         { label: "Quantitative", value: "159" },
         { label: "Verbal", value: "146" },
         { label: "Analytical Writing", value: "3.5" }
-      ]
+      ],
+      url: "https://drive.google.com/file/d/10epztVdHTQjoww5Z8AHhP5e3qhDUwvDZ/view?usp=sharing"
     },
     {
       test: "Duolingo English Test (DET)",
@@ -43,6 +52,29 @@ const AcademicCredentials = () => {
         { label: "Comprehension", value: "135" },
         { label: "Conversation", value: "110" },
         { label: "Production", value: "95" }
+      ],
+      url: "https://certs.duolingo.com/4ff16a11f475598597fac844cb75f186"
+    },
+
+    {
+      test: "Graduate Record Examination (GRE) - 2nd Attempt",
+      date: "Determined to sit within December 2025",
+      scores: [
+        { label: "Total", value: "-" },
+        { label: "Quantitative", value: "-" },
+        { label: "Verbal", value: "-" },
+        { label: "Analytical Writing", value: "-" }
+      ]
+    },
+    {
+      test: "Test of English as a Foreign Language (TOEFL)",
+      date: "Determined to sit within December 2025",
+      scores: [
+        { label: "Overall", value: "-" },
+        { label: "Listening", value: "-" },
+        { label: "Speaking", value: "-" },
+        { label: "Reading", value: "-" },
+        { label: "Writing", value: "-" }
       ]
     }
   ];
@@ -76,9 +108,23 @@ const AcademicCredentials = () => {
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
-                        {edu.degree}
+                        {edu.degreeUrl ? (
+                          <a href={edu.degreeUrl} target="_blank" rel="noreferrer noopener" className="hover:underline">
+                            {edu.degree}
+                          </a>
+                        ) : (
+                          edu.degree
+                        )}
                       </CardTitle>
-                      <p className="text-primary font-medium mb-1">{edu.institution}</p>
+                      <p className="text-primary font-medium mb-1">
+                        {edu.institutionUrl ? (
+                          <a href={edu.institutionUrl} target="_blank" rel="noreferrer noopener" className="hover:underline">
+                            {edu.institution}
+                          </a>
+                        ) : (
+                          edu.institution
+                        )}
+                      </p>
                       <p className="text-muted-foreground text-sm">{edu.location}</p>
                     </div>
                     <div className="flex flex-col gap-2 items-end">
@@ -93,17 +139,42 @@ const AcademicCredentials = () => {
                   </div>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <div className="flex flex-wrap gap-6">
+                  <div className="flex flex-wrap items-center gap-6">
                     <div className="flex items-center gap-2">
                       <Trophy className="w-4 h-4 text-primary" />
-                      <span className="text-sm font-medium">CGPA: {edu.gpa}</span>
+                      {edu.transcriptUrl ? (
+                        <a href={edu.transcriptUrl} target="_blank" rel="noreferrer noopener" className="text-sm font-medium hover:underline">
+                          CGPA: {edu.gpa}
+                        </a>
+                      ) : (
+                        <span className="text-sm font-medium">CGPA: {edu.gpa}</span>
+                      )}
                     </div>
                     {edu.supervisor && (
                       <div className="flex items-center gap-2">
                         <FileText className="w-4 h-4 text-primary" />
-                        <span className="text-sm">Supervisor: {edu.supervisor}</span>
+                        {edu.supervisorUrl ? (
+                          <a href={edu.supervisorUrl} target="_blank" rel="noreferrer noopener" className="text-sm hover:underline">
+                            Supervisor: {edu.supervisor}
+                          </a>
+                        ) : (
+                          <span className="text-sm">Supervisor: {edu.supervisor}</span>
+                        )}
                       </div>
                     )}
+                    <div className="ml-auto">
+                      <Button asChild variant="ghost" size="sm" className="group/btn">
+                        <a
+                          href={index === 0 ? "https://www.hstu.ac.bd/uploads/curriculam/CourseLayoutMSc_CSE.pdf" : "https://hstu.ac.bd/uploads/curriculam/eee/1.pdf"}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="inline-flex items-center gap-2"
+                        >
+                          <ExternalLink className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
+                          Course Curriculum
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -119,17 +190,29 @@ const AcademicCredentials = () => {
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {testScores.map((test, index) => (
-              <Card key={index} className="academic-card group">
-                <CardHeader>
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                    {test.test}
-                  </CardTitle>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4" />
-                    {test.date}
+              <Card key={index} className="academic-card group hover:shadow-lg transition-shadow">
+                <CardHeader className="pb-2">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                        {test.test}
+                      </CardTitle>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
+                        <Calendar className="w-4 h-4" />
+                        {test.date}
+                      </div>
+                    </div>
+                    {test.url && (
+                      <Button asChild variant="ghost" size="sm" className="group/btn">
+                        <a href={test.url} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2">
+                          <ExternalLink className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
+                          View Certificate
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-4">
                   <div className="grid grid-cols-2 gap-4">
                     {test.scores.map((score, scoreIndex) => (
                       <div key={scoreIndex} className="flex justify-between items-center py-2 px-3 bg-muted/50 rounded-lg">
