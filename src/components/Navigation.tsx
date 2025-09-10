@@ -30,7 +30,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm">      <div className="container max-w-7xl mx-auto px-4 py-3">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">      <div className="container max-w-7xl mx-auto px-4 py-5">
         <div className="flex items-center gap-4">
           <div className="font-bold text-xl text-primary cursor-pointer whitespace-nowrap flex-shrink-0" onClick={() => scrollToSection('hero')}>
             Md. Bipul Islam
