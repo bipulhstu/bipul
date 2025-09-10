@@ -17,7 +17,7 @@ const Navigation = () => {
   const menuItems = [
     { id: 'hero', label: 'Home' },
     { id: 'research-interests', label: 'Research Interests' },
-    { id: 'academic-credentials', label: 'Education' },
+    { id: 'academic-credentials', label: 'Academic Credentials' },
     { id: 'research-experience', label: 'Research Experience' },
     { id: 'work-experience', label: 'Experience' },
     // { id: 'teaching-experience', label: 'Teaching Experience' },
