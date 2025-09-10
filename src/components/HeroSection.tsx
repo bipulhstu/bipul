@@ -48,30 +48,38 @@ const HeroSection = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span className="text-sm">bipulhstu@gmail.com</span>
+                <a href="mailto:bipulhstu@gmail.com" className="text-sm hover:underline">bipulhstu@gmail.com</a>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span className="text-sm">+880 1777 833 756</span>
+                <a href="tel:+8801777833756" className="text-sm hover:underline">+880 1777 833 756</a>
               </div>
             </div>
 
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-              <Button variant="academic" size="lg" className="group">
-                <ExternalLink className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                View Research
+              <Button asChild variant="academic" size="lg" className="group">
+                <a href="#publications">
+                  <ExternalLink className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                  View Research
+                </a>
               </Button>
-              <Button variant="research" size="lg" className="group">
-                <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                Contact Me
+              <Button asChild variant="research" size="lg" className="group">
+                <a href="mailto:bipulhstu@gmail.com">
+                  <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  Contact Me
+                </a>
               </Button>
               <div className="flex gap-2">
-                <Button size="icon" variant="ghost" className="bg-white/10 hover:bg-white/20 text-white border border-white/20">
-                  <Github className="w-5 h-5" />
+                <Button asChild size="icon" variant="ghost" className="bg-white/10 hover:bg-white/20 text-white border border-white/20">
+                  <a href="https://github.com/bipulhstu" target="_blank" rel="noreferrer noopener" aria-label="GitHub">
+                    <Github className="w-5 h-5" />
+                  </a>
                 </Button>
-                <Button size="icon" variant="ghost" className="bg-white/10 hover:bg-white/20 text-white border border-white/20">
-                  <Linkedin className="w-5 h-5" />
+                <Button asChild size="icon" variant="ghost" className="bg-white/10 hover:bg-white/20 text-white border border-white/20">
+                  <a href="https://www.linkedin.com/in/bipulhstu/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
                 </Button>
               </div>
             </div>
