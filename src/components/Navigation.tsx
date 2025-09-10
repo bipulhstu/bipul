@@ -16,10 +16,10 @@ const Navigation = () => {
 
   const menuItems = [
     { id: 'hero', label: 'Home' },
-    { id: 'research-interests', label: 'Research Interests' },
-    { id: 'academic-credentials', label: 'Academic Credentials' },
+    { id: 'research-interests', label: 'Interests' },
+    { id: 'academic-credentials', label: 'Education' },
     { id: 'research-experience', label: 'Research Experience' },
-    { id: 'work-experience', label: 'Experience' },
+    { id: 'work-experience', label: 'Work Experience' },
     // { id: 'teaching-experience', label: 'Teaching Experience' },
     { id: 'publications', label: 'Publications' },
     { id: 'research-projects', label: 'Projects' },
@@ -30,21 +30,20 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
-      <div className="container max-w-7xl mx-auto px-4 py-3">
-        <div className="flex items-center justify-between">
-          <div className="font-bold text-xl text-primary cursor-pointer" onClick={() => scrollToSection('hero')}>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm">      <div className="container max-w-7xl mx-auto px-4 py-3">
+        <div className="flex items-center gap-4">
+          <div className="font-bold text-xl text-primary cursor-pointer whitespace-nowrap flex-shrink-0" onClick={() => scrollToSection('hero')}>
             Md. Bipul Islam
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:block">
-            <NavigationMenu>
-              <NavigationMenuList className="space-x-1">
+          <div className="hidden lg:block flex-1">
+            <NavigationMenu className="w-full">
+              <NavigationMenuList className="w-full flex justify-between">
                 {menuItems.map((item) => (
                   <NavigationMenuItem key={item.id}>
                     <NavigationMenuLink
-                      className="cursor-pointer px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors rounded-md hover:bg-accent"
+                      className="cursor-pointer px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors rounded-md hover:bg-accent text-center whitespace-nowrap"
                       onClick={() => scrollToSection(item.id)}
                     >
                       {item.label}

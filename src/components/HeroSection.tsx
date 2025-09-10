@@ -5,7 +5,7 @@ import profileImage from "@/assets/profile-image.jpg";
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="academic-hero min-h-[90vh] flex items-center justify-center py-20 px-4">
+    <section id="hero" className="academic-hero min-h-[90vh] flex items-center justify-center pt-6 pb-20 px-4">
       <div className="container max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Profile Image */}
