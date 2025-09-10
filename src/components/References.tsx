@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Phone, MapPin, Building2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Mail, Phone, MapPin, Building2, Linkedin, ExternalLink } from "lucide-react";
 
 const References = () => {
   const references = [
@@ -11,7 +12,9 @@ const References = () => {
       organization: "Walton Digi-Tech Industries Ltd",
       location: "Dhaka, Bangladesh",
       phone: "+880 1608 985 600",
-      email: "wdc.com.its6@waltonbd.com"
+      email: "wdc.com.its6@waltonbd.com",
+      linkedin: "https://www.linkedin.com/in/sharifulbsc/",
+      website: undefined
     },
     {
       name: "Dr. Md. Dulal Haque",
@@ -20,7 +23,31 @@ const References = () => {
       organization: "Hajee Mohammad Danesh Science and Technology University",
       location: "Dinajpur, Bangladesh",
       phone: "+880 1712 534 968",
-      email: "dhaque@hstu.ac.bd"
+      email: "dhaque@hstu.ac.bd",
+      linkedin: "https://www.linkedin.com/in/dr-md-dulal-haque-49908b232/",
+      website: "https://hstu.ac.bd/teacher/dulal"
+    },
+    {
+      name: "Dr. Ashis Kumar Mandal",
+      title: "Professor",
+      department: "Department of Computer Science and Engineering",
+      organization: "Hajee Mohammad Danesh Science and Technology University",
+      location: "Dinajpur, Bangladesh",
+      phone: "+880 1912 136 021",
+      email: "ashis@hstu.ac.bd",
+      linkedin: "https://www.linkedin.com/in/ashis-kumar-mandal-phd-1b995945/",
+      website: "https://hstu.ac.bd/teacher/ashis"
+    },
+    {
+      name: "Md. Faruk Kibria",
+      title: "Professor",
+      department: "Department of Electrical and Electronic Engineering (EEE)",
+      organization: "Hajee Mohammad Danesh Science and Technology University",
+      location: "Dinajpur, Bangladesh",
+      phone: "+880 1714 942 185",
+      email: "mfkibria.eee@hstu.ac.bd",
+      linkedin: "https://www.linkedin.com/in/md-faruk-kibria-9a7896b6/",
+      website: "https://hstu.ac.bd/teacher/kibria"
     }
   ];
 
@@ -64,8 +91,34 @@ const References = () => {
                 
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                  <p className="text-sm text-primary font-mono">{ref.email}</p>
+                  <a
+                    href={`mailto:${ref.email}`}
+                    className="text-sm text-primary font-mono hover:underline"
+                  >
+                    {ref.email}
+                  </a>
                 </div>
+
+                {(ref.linkedin || ref.website) && (
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {ref.linkedin && (
+                      <Button asChild variant="research" size="sm" className="group">
+                        <a href={ref.linkedin} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2">
+                          <Linkedin className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                          LinkedIn
+                        </a>
+                      </Button>
+                    )}
+                    {ref.website && (
+                      <Button asChild variant="academic" size="sm" className="group">
+                        <a href={ref.website} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2">
+                          <ExternalLink className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                          Website
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
