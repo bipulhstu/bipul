@@ -1,9 +1,19 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { GraduationCap, ExternalLink } from "lucide-react";
+import { useState } from "react";
 
 const CourseGrades = () => {
+  const [loadingIndex, setLoadingIndex] = useState<number | null>(null);
+  const getPreviewUrl = (url: string) => {
+    const match = url.match(/\/file\/d\/([^/]+)\/view/);
+    if (match && match[1]) {
+      return `https://drive.google.com/file/d/${match[1]}/preview`;
+    }
+    return url;
+  };
   const courses = [
     { code: "MAP 213", name: "Linear Algebra", grade: "3.00/4.00" },
     { code: "ECE 215", name: "Signal and Systems", grade: "3.75/4.00" },
@@ -67,12 +77,43 @@ const CourseGrades = () => {
                   <div className="w-2 h-6 bg-primary rounded" />
                   <h4 className="text-lg font-semibold">MSc in CSE Semester 1 Courses with Achieved GPA</h4>
                 </div>
-                <Button asChild variant="research" size="sm" className="group">
-                  <a href="https://drive.google.com/file/d/1-jwXHCTUTpoukCz29jHBGy8Uusk5-teB/view?usp=sharing" target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2">
-                    <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                    Transcripts
-                  </a>
-                </Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button onClick={() => setLoadingIndex(0)} variant="research" size="sm" className="group">
+                      <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                      Transcripts
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-center">MSc in CSE Semester 1 Transcripts</DialogTitle>
+                    </DialogHeader>
+                    <div className="mt-4 relative">
+                      {loadingIndex === 0 && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-muted/30 rounded-lg">
+                          <svg className="animate-spin h-6 w-6 text-muted-foreground" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                          </svg>
+                        </div>
+                      )}
+                      <iframe
+                        src={getPreviewUrl("https://drive.google.com/file/d/1-jwXHCTUTpoukCz29jHBGy8Uusk5-teB/view?usp=sharing")}
+                        className="w-full h-[600px] border-0 rounded-lg"
+                        title={`MSc Transcripts`}
+                        onLoad={() => setLoadingIndex(null)}
+                      />
+                    </div>
+                    <div className="flex justify-center mt-4">
+                      <Button asChild variant="outline" size="sm">
+                        <a href="https://drive.google.com/file/d/1-jwXHCTUTpoukCz29jHBGy8Uusk5-teB/view?usp=sharing" target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2">
+                          <ExternalLink className="w-4 h-4" />
+                          Open in New Tab
+                        </a>
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
               <div className="grid md:grid-cols-2 gap-x-8 gap-y-4">
                 {mscLevel1Sem1.map((course, index) => (
@@ -96,12 +137,43 @@ const CourseGrades = () => {
                   <div className="w-2 h-6 bg-primary rounded" />
                   <h4 className="text-lg font-semibold">B.Sc. in EEE Courses with Achieved GPA</h4>
                 </div>
-                <Button asChild variant="research" size="sm" className="group">
-                  <a href="https://drive.google.com/file/d/1-jwXHCTUTpoukCz29jHBGy8Uusk5-teB/view?usp=sharing" target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2">
-                    <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                    Transcripts
-                  </a>
-                </Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button onClick={() => setLoadingIndex(1)} variant="research" size="sm" className="group">
+                      <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                      Transcripts
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-center">B.Sc. in EEE Transcripts</DialogTitle>
+                    </DialogHeader>
+                    <div className="mt-4 relative">
+                      {loadingIndex === 1 && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-muted/30 rounded-lg">
+                          <svg className="animate-spin h-6 w-6 text-muted-foreground" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                          </svg>
+                        </div>
+                      )}
+                      <iframe
+                        src={getPreviewUrl("https://drive.google.com/file/d/1-jwXHCTUTpoukCz29jHBGy8Uusk5-teB/view?usp=sharing")}
+                        className="w-full h-[600px] border-0 rounded-lg"
+                        title={`BSc Transcripts`}
+                        onLoad={() => setLoadingIndex(null)}
+                      />
+                    </div>
+                    <div className="flex justify-center mt-4">
+                      <Button asChild variant="outline" size="sm">
+                        <a href="https://drive.google.com/file/d/1-jwXHCTUTpoukCz29jHBGy8Uusk5-teB/view?usp=sharing" target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2">
+                          <ExternalLink className="w-4 h-4" />
+                          Open in New Tab
+                        </a>
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
               <div className="grid md:grid-cols-2 gap-x-8 gap-y-4">
                 {courses.map((course, index) => (

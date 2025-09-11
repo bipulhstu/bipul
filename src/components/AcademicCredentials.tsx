@@ -1,9 +1,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { GraduationCap, Trophy, FileText, Calendar, ExternalLink } from "lucide-react";
 
+import { useState } from "react";
+
 const AcademicCredentials = () => {
+  const [loadingIndex, setLoadingIndex] = useState<number | null>(null);
+  const getPreviewUrl = (url: string) => {
+    const match = url.match(/\/file\/d\/([^/]+)\/view/);
+    if (match && match[1]) {
+      return `https://drive.google.com/file/d/${match[1]}/preview`;
+    }
+    return url;
+  };
   const education = [
     {
       degree: "M.Sc. (Engineering) in Computer Science and Engineering",
@@ -129,7 +140,7 @@ const AcademicCredentials = () => {
                     </div>
                     <div className="flex flex-col gap-2 items-end">
                       <Badge className={edu.status === 'ongoing' ? 'bg-blue-100 text-blue-800 border-blue-200' : 'bg-green-100 text-green-800 border-green-200'}>
-                        {edu.status === 'ongoing' ? 'In Progress' : 'Completed'}
+                        {edu.status === 'ongoing' ? 'Ongoing' : 'Completed'}
                       </Badge>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <Calendar className="w-4 h-4" />
@@ -163,17 +174,49 @@ const AcademicCredentials = () => {
                       </div>
                     )}
                     <div className="ml-auto">
-                      <Button asChild variant="ghost" size="sm" className="group/btn">
-                        <a
-                          href={index === 0 ? "https://www.hstu.ac.bd/uploads/curriculam/CourseLayoutMSc_CSE.pdf" : "https://hstu.ac.bd/uploads/curriculam/eee/1.pdf"}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          className="inline-flex items-center gap-2"
-                        >
-                          <ExternalLink className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
-                          Course Curriculum
-                        </a>
-                      </Button>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button onClick={() => setLoadingIndex(index)} variant="research" size="sm" className="group">
+                            <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                            Course Curriculum
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
+                          <DialogHeader>
+                            <DialogTitle className="text-center">{edu.degree}</DialogTitle>
+                            <p className="text-sm text-muted-foreground text-center">{edu.institution}</p>
+                          </DialogHeader>
+                          <div className="mt-4 relative">
+                            {loadingIndex === index && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-muted/30 rounded-lg">
+                                <svg className="animate-spin h-6 w-6 text-muted-foreground" viewBox="0 0 24 24">
+                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                </svg>
+                              </div>
+                            )}
+                            <iframe
+                              src={getPreviewUrl(index === 0 ? "https://www.hstu.ac.bd/uploads/curriculam/CourseLayoutMSc_CSE.pdf" : "https://hstu.ac.bd/uploads/curriculam/eee/1.pdf")}
+                              className="w-full h-[600px] border-0 rounded-lg"
+                              title={`${edu.degree} Curriculum`}
+                              onLoad={() => setLoadingIndex(null)}
+                            />
+                          </div>
+                          <div className="flex justify-center mt-4">
+                            <Button asChild variant="outline" size="sm">
+                              <a
+                                href={index === 0 ? "https://www.hstu.ac.bd/uploads/curriculam/CourseLayoutMSc_CSE.pdf" : "https://hstu.ac.bd/uploads/curriculam/eee/1.pdf"}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="inline-flex items-center gap-2"
+                              >
+                                <ExternalLink className="w-4 h-4" />
+                                Open in New Tab
+                              </a>
+                            </Button>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                     </div>
                   </div>
                 </CardContent>
@@ -203,12 +246,44 @@ const AcademicCredentials = () => {
                       </div>
                     </div>
                     {test.url && (
-                      <Button asChild variant="ghost" size="sm" className="group/btn">
-                        <a href={test.url} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2">
-                          <ExternalLink className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
-                          View Certificate
-                        </a>
-                      </Button>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button onClick={() => setLoadingIndex(index)} variant="research" size="sm" className="group">
+                            <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                            View Certificate
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
+                          <DialogHeader>
+                            <DialogTitle className="text-center">{test.test}</DialogTitle>
+                            <p className="text-sm text-muted-foreground text-center">{test.date}</p>
+                          </DialogHeader>
+                          <div className="mt-4 relative">
+                            {loadingIndex === index && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-muted/30 rounded-lg">
+                                <svg className="animate-spin h-6 w-6 text-muted-foreground" viewBox="0 0 24 24">
+                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                </svg>
+                              </div>
+                            )}
+                            <iframe
+                              src={getPreviewUrl(test.url)}
+                              className="w-full h-[600px] border-0 rounded-lg"
+                              title={`${test.test} Certificate`}
+                              onLoad={() => setLoadingIndex(null)}
+                            />
+                          </div>
+                          <div className="flex justify-center mt-4">
+                            <Button asChild variant="outline" size="sm">
+                              <a href={test.url} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2">
+                                <ExternalLink className="w-4 h-4" />
+                                Open in New Tab
+                              </a>
+                            </Button>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                     )}
                   </div>
                 </CardHeader>

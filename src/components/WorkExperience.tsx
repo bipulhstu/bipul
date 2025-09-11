@@ -1,13 +1,28 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Building2, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Building2, Calendar, ExternalLink, Eye } from "lucide-react";
+import { useState } from "react";
 
 const WorkExperience = () => {
+  const [loadingIndex, setLoadingIndex] = useState<number | null>(null);
+  const getDrivePreviewUrl = (url: string) => {
+    // Converts Google Drive "view" links to embeddable preview links
+    const match = url.match(/\/file\/d\/([^/]+)\/view/);
+    if (match && match[1]) {
+      return `https://drive.google.com/file/d/${match[1]}/preview`;
+    }
+    return url;
+  };
+
   const experiences = [
     {
       title: "Software Engineer (Android & iOS) – Team Leader",
       company: "Walton Digi-Tech Industries Ltd, Dhaka, Bangladesh",
+      companyUrl: "https://www.waltondigitech.com",
       period: "Mar 2022 – Dec 2024",
+      certificateUrl: "https://drive.google.com/file/d/1l5omEGS04I6a0kmKS9oisGfHtNjZOCpU/view?usp=sharing", // Add Google Drive link here when available
       responsibilities: [
         "Led development of cross-platform apps, including Bench Educational App & HRMS, for internal use and clients.",
         "Built IoT-based Android apps for Walton Tick Smart Watch and FitPro Smart Weight Scale, enabling real-time device communication and data analytics.",
@@ -17,7 +32,9 @@ const WorkExperience = () => {
     {
       title: "Android Application Developer",
       company: "Hovata Technologies, Dhaka, Bangladesh",
+      companyUrl: "https://hovata.com",
       period: "Jan 2020 – Feb 2022",
+      certificateUrl: "https://drive.google.com/file/d/1-w5ickLgNdv2Q7xGK2T4GIQ7aBrCIBN1/view", // Add Google Drive link here when available
       responsibilities: [
         "Developed IoT-based Android apps including Digital Petrol Pump (Petrol ERP & POS), Smart Parking Management System (Hovata Parking), and Smart Wallet Management App (Linn Books).",
         "Implemented real-time device communication, secure transactions, and cloud integration for digital solutions."
@@ -46,12 +63,25 @@ const WorkExperience = () => {
                     <CardTitle className="text-xl mb-2">{exp.title}</CardTitle>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Building2 className="w-4 h-4" />
-                      <span>{exp.company}</span>
+                      {exp.companyUrl ? (
+                        <a
+                          href={exp.companyUrl}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="text-primary hover:underline"
+                        >
+                          {exp.company}
+                        </a>
+                      ) : (
+                        <span>{exp.company}</span>
+                      )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4" />
-                    <span>{exp.period}</span>
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Calendar className="w-4 h-4" />
+                      <span>{exp.period}</span>
+                    </div>
                   </div>
                 </div>
               </CardHeader>
@@ -64,6 +94,53 @@ const WorkExperience = () => {
                     </li>
                   ))}
                 </ul>
+                {exp.certificateUrl && (
+                  <div className="mt-4 flex justify-end">
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button onClick={() => setLoadingIndex(index)} variant="research" size="sm" className="group">
+                          <Eye className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                          Experience Certificate
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
+                        <DialogHeader>
+                          <DialogTitle className="text-center">{exp.title}</DialogTitle>
+                          <p className="text-sm text-muted-foreground text-center">{exp.company}</p>
+                        </DialogHeader>
+                        <div className="mt-4 relative">
+                          {loadingIndex === index && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-muted/30 rounded-lg">
+                              <svg className="animate-spin h-6 w-6 text-muted-foreground" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                              </svg>
+                            </div>
+                          )}
+                          <iframe
+                            src={getDrivePreviewUrl(exp.certificateUrl)}
+                            className="w-full h-[600px] border-0 rounded-lg"
+                            title={`${exp.title} Certificate`}
+                            onLoad={() => setLoadingIndex(null)}
+                          />
+                        </div>
+                        <div className="flex justify-center mt-4">
+                          <Button asChild variant="outline" size="sm">
+                            <a 
+                              href={exp.certificateUrl}
+                              target="_blank" 
+                              rel="noreferrer noopener"
+                              className="inline-flex items-center gap-2"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                              Open in New Tab
+                            </a>
+                          </Button>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
