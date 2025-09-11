@@ -110,9 +110,9 @@ const References = () => {
                       </Button>
                     )}
                     {ref.website && (
-                      <Button asChild variant="academic" size="sm" className="group">
+                      <Button asChild variant="research" size="sm" className="group">
                         <a href={ref.website} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2">
-                          <ExternalLink className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                          <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
                           Website
                         </a>
                       </Button>

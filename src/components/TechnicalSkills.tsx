@@ -1,9 +1,30 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { Code, Database, Brain, Wrench, PieChart, Smartphone } from "lucide-react";
 
 const TechnicalSkills = () => {
+  // Helper function to get proficiency level and badge styling
+  const getProficiencyLevel = (percentage: number) => {
+    if (percentage >= 90) return "Expert";
+    if (percentage >= 80) return "Advanced";
+    if (percentage >= 70) return "Intermediate";
+    return "Beginner";
+  };
+
+  const getBadgeVariant = (percentage: number) => {
+    if (percentage >= 90) return "default";
+    if (percentage >= 80) return "secondary";
+    if (percentage >= 70) return "outline";
+    return "outline";
+  };
+
+  const getBadgeColor = (percentage: number) => {
+    if (percentage >= 90) return "bg-green-100 text-green-800 border-green-200 hover:bg-green-200";
+    if (percentage >= 80) return "bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-200";
+    if (percentage >= 70) return "bg-yellow-100 text-yellow-800 border-yellow-200 hover:bg-yellow-200";
+    return "bg-gray-100 text-gray-800 border-gray-200 hover:bg-gray-200";
+  };
+
   const skillCategories = [
     {
       icon: Brain,
@@ -26,11 +47,11 @@ const TechnicalSkills = () => {
       bgColor: "bg-green-50",
       skills: [
         { name: "Python", level: 95 },
-        { name: "Java", level: 85 },
-        { name: "C++", level: 80 },
-        { name: "Kotlin", level: 75 },
-        { name: "Swift", level: 70 },
-        { name: "Dart", level: 70 }
+        { name: "Kotlin", level: 95 },
+        { name: "Java", level: 95 },
+        { name: "C++", level: 90 },
+        { name: "Swift", level: 80 },
+        { name: "Dart", level: 85 }
       ]
     },
     {
@@ -62,14 +83,15 @@ const TechnicalSkills = () => {
     },
     {
       icon: Smartphone,
-      title: "Mobile Development",
+      title: "Mobile App Development",
       color: "text-indigo-600",
       bgColor: "bg-indigo-50",
       skills: [
-        { name: "Android (Java/Kotlin)", level: 90 },
-        { name: "iOS (Swift)", level: 80 },
-        { name: "Flutter", level: 85 },
-        { name: "React Native", level: 70 }
+        { name: "Android - Java/Kotlin", level: 90 },
+        { name: "Android - Jetpack Compose", level: 90 },
+        { name: "iOS - SwiftUI & UIKit", level: 90 },
+        { name: "Cross-Platform - CMP/KMP", level: 90 },
+        { name: "Cross-Platform - Flutter", level: 90 }
       ]
     },
     {
@@ -118,21 +140,18 @@ const TechnicalSkills = () => {
                     </CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3">
                   {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex} className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-foreground">
-                          {skill.name}
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <Progress 
-                        value={skill.level} 
-                        className="h-2 bg-muted/50"
-                      />
+                    <div key={skillIndex} className="flex justify-between items-center">
+                      <span className="text-sm font-medium text-foreground">
+                        {skill.name}
+                      </span>
+                      <Badge 
+                        variant={getBadgeVariant(skill.level) as any}
+                        className={`text-xs font-medium ${getBadgeColor(skill.level)}`}
+                      >
+                        {getProficiencyLevel(skill.level)}
+                      </Badge>
                     </div>
                   ))}
                 </CardContent>
