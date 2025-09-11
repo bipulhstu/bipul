@@ -8,7 +8,7 @@ import TeachingExperience from "@/components/TeachingExperience";
 import Publications from "@/components/Publications";
 import ResearchProjects from "@/components/ResearchProjects";
 import TechnicalSkills from "@/components/TechnicalSkills";
-import RelevantCoursework from "@/components/RelevantCoursework";
+import OnlineCertifications from "@/components/OnlineCertifications";
 import CourseGrades from "@/components/CourseGrades";
 import Leadership from "@/components/Leadership";
 import References from "@/components/References";
@@ -27,7 +27,7 @@ const Index = () => {
         <Publications />
         <ResearchProjects />
         <TechnicalSkills />
-        <RelevantCoursework />
+        <OnlineCertifications />
         <CourseGrades />
         <Leadership />
         <References />

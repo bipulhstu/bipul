@@ -18,13 +18,14 @@ const Navigation = () => {
     { id: 'hero', label: 'Home' },
     { id: 'research-interests', label: 'Interests' },
     { id: 'academic-credentials', label: 'Education' },
-    { id: 'research-experience', label: 'Research Experience' },
-    { id: 'work-experience', label: 'Work Experience' },
+    { id: 'research-experience', label: 'Research' },
+    { id: 'work-experience', label: 'Professional' },
     // { id: 'teaching-experience', label: 'Teaching Experience' },
     { id: 'publications', label: 'Publications' },
     { id: 'research-projects', label: 'Projects' },
     { id: 'technical-skills', label: 'Skills' },
-    { id: 'coursework', label: 'Coursework' },
+    { id: 'coursework', label: 'Certifications' },
+    { id: 'course-grades', label: 'Coursework' },
     { id: 'leadership', label: 'Leadership' },
     { id: 'references', label: 'References' }
   ];

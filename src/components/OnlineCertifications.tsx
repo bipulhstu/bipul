@@ -9,7 +9,7 @@ import dsaCert from "@/assets/dsa.jpg";
 
 import { useState } from "react";
 
-const RelevantCoursework = () => {
+const OnlineCertifications = () => {
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
   const [loadingIndex, setLoadingIndex] = useState<number | null>(null);
 
@@ -293,7 +293,12 @@ const RelevantCoursework = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                        <h4 className="font-medium text-foreground">{item.title}</h4>
+                        <div className="flex items-center gap-2 min-w-0">
+                          <h4 className="font-medium text-foreground truncate">{item.title}</h4>
+                          {item.provider && (
+                            <span className="text-sm text-muted-foreground truncate">— {item.provider}</span>
+                          )}
+                        </div>
                         {(item.image || item.certificateUrl || item.details) && (
                           <Dialog>
                             <DialogTrigger asChild>
@@ -361,7 +366,6 @@ const RelevantCoursework = () => {
                           </Dialog>
                         )}
                       </div>
-                      <p className="text-sm text-muted-foreground mt-1">{item.provider}</p>
                     </div>
                   </div>
                 );
@@ -374,4 +378,5 @@ const RelevantCoursework = () => {
   );
 };
 
-export default RelevantCoursework;
+export default OnlineCertifications;
+

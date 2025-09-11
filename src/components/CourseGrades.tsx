@@ -50,7 +50,7 @@ const CourseGrades = () => {
   };
 
   return (
-    <section className="pt-10 pb-8 px-4 bg-gradient-subtle">
+    <section id="course-grades" className="pt-10 pb-8 px-4 scroll-mt-16 md:scroll-mt-10">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-10">
           {/**
@@ -117,9 +117,9 @@ const CourseGrades = () => {
                   </DialogContent>
                 </Dialog>
               </div>
-              <div className="grid md:grid-cols-2 gap-x-8 gap-y-4">
+              <div className="grid md:grid-cols-2 gap-x-4 gap-y-2">
                 {mscLevel1Sem1.map((course, index) => (
-                  <div key={index} className="flex justify-between items-center p-3 rounded-lg hover:bg-accent/50 transition-colors">
+                  <div key={index} className="flex justify-between items-center p-2 rounded-lg hover:bg-accent/50 transition-colors">
                     <span className="text-sm font-medium text-foreground">
                       <span className="text-muted-foreground mr-2 font-mono">{course.code}</span>
                       {course.name}
@@ -177,9 +177,9 @@ const CourseGrades = () => {
                   </DialogContent>
                 </Dialog>
               </div>
-              <div className="grid md:grid-cols-2 gap-x-8 gap-y-4">
+              <div className="grid md:grid-cols-2 gap-x-4 gap-y-2">
                 {courses.map((course, index) => (
-                  <div key={index} className="flex justify-between items-center p-3 rounded-lg hover:bg-accent/50 transition-colors">
+                  <div key={index} className="flex justify-between items-center p-2 rounded-lg hover:bg-accent/50 transition-colors">
                     <span className="text-sm font-medium text-foreground">
                       {course.code && (
                         <span className="text-muted-foreground mr-2 font-mono">{course.code}</span>

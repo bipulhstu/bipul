@@ -69,20 +69,20 @@ const Leadership = () => {
         </div>
 
         <Card className="academic-card">
-          <CardContent className="p-6">
-            <div className="grid gap-4">
+          <CardContent className="p-4">
+            <div className="grid gap-2">
               {activities.map((activity, index) => {
                 const IconComponent = getIcon(activity.type);
                 return (
-                  <div key={index} className="flex items-center gap-4 p-4 rounded-lg hover:bg-accent/50 transition-colors">
+                  <div key={index} className="flex items-center gap-2 p-2 rounded-lg hover:bg-accent/50 transition-colors">
                     <div className="p-2 bg-primary/10 rounded-lg">
                       <IconComponent className="w-5 h-5 text-primary" />
                     </div>
                     <div className="flex-1">
                       <h3 className="font-medium text-foreground">{activity.role}</h3>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                         <Calendar className="w-4 h-4" />
                         <span>{activity.period}</span>
                       </div>
