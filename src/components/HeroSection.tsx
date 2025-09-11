@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Mail, Phone, Github, Linkedin, ExternalLink } from "lucide-react";
+import cvPdf from "@/assets/bipul_islam_cv.pdf";
 import profileImage from "@/assets/profile-image.jpg";
 
 const HeroSection = () => {
@@ -62,6 +63,12 @@ const HeroSection = () => {
                 <a href="#publications">
                   <ExternalLink className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                   View Research
+                </a>
+              </Button>
+              <Button asChild variant="research" size="lg" className="group">
+                <a href={cvPdf} target="_blank" rel="noreferrer noopener">
+                  <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  View CV
                 </a>
               </Button>
               <Button asChild variant="research" size="lg" className="group">
