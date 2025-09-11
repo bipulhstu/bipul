@@ -55,7 +55,7 @@ const Leadership = () => {
   };
 
   return (
-    <section id="leadership" className="py-10 px-4 bg-gradient-subtle">
+    <section id="leadership" className="pt-10 pb-8 px-4 scroll-mt-16 md:scroll-mt-10">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-10">
           {/**

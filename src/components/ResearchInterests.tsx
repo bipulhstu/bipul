@@ -47,7 +47,7 @@ const ResearchInterests = () => {
   ];
 
   return (
-    <section id="research-interests" className="py-10 px-4 bg-gradient-subtle">
+    <section id="research-interests" className="py-10 px-4 bg-gradient-subtle scroll-mt-16 md:scroll-mt-10">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-10">
           {/**
