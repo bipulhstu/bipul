@@ -260,7 +260,7 @@ const OnlineCertifications = () => {
   ];
 
   return (
-    <section id="coursework" className="pt-10 pb-8 px-4 scroll-mt-16 md:scroll-mt-10">
+    <section id="certification" className="pt-10 pb-8 px-4 scroll-mt-16 md:scroll-mt-10">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-10">
           {/**
@@ -279,7 +279,7 @@ const OnlineCertifications = () => {
               <div className="p-2 bg-primary/10 rounded-lg">
                 <GraduationCap className="w-6 h-6 text-primary" />
               </div>
-              <CardTitle className="text-2xl">Education & Certifications</CardTitle>
+              <CardTitle className="text-2xl">Education & Online Certifications</CardTitle>
             </div>
           </CardHeader>
           <CardContent>

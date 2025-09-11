@@ -69,7 +69,7 @@ const AcademicCredentials = () => {
 
     {
       test: "Graduate Record Examination (GRE) - 2nd Attempt",
-      date: "Determined to sit within December 2025",
+      date: "Determined to take the test within December 2025",
       scores: [
         { label: "Total", value: "-" },
         { label: "Quantitative", value: "-" },
@@ -79,7 +79,7 @@ const AcademicCredentials = () => {
     },
     {
       test: "Test of English as a Foreign Language (TOEFL)",
-      date: "Determined to sit within December 2025",
+      date: "Determined to take the test within December 2025",
       scores: [
         { label: "Overall", value: "-" },
         { label: "Listening", value: "-" },

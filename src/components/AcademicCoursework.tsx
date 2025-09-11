@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { GraduationCap, ExternalLink } from "lucide-react";
 import { useState } from "react";
 
-const CourseGrades = () => {
+const AcademicCoursework = () => {
   const [loadingIndex, setLoadingIndex] = useState<number | null>(null);
   const getPreviewUrl = (url: string) => {
     const match = url.match(/\/file\/d\/([^/]+)\/view/);
@@ -14,6 +14,7 @@ const CourseGrades = () => {
     }
     return url;
   };
+
   const courses = [
     { code: "MAP 213", name: "Linear Algebra", grade: "3.00/4.00" },
     { code: "ECE 215", name: "Signal and Systems", grade: "3.75/4.00" },
@@ -45,7 +46,6 @@ const CourseGrades = () => {
     if (numericGrade >= 3.5) return "text-green-600";
     if (numericGrade >= 3.0) return "text-blue-600";
     if (numericGrade >= 2.5) return "text-blue-600";
-    // if (numericGrade >= 2.5) return "text-orange-600";
     return "text-red-600";
   };
 
@@ -71,8 +71,7 @@ const CourseGrades = () => {
               </div>
               <h3 className="text-xl font-semibold">Course Performance Overview</h3>
             </div>
-            
-            {/* MSc Level 1 Semester 1 - shown at top */}
+
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -132,7 +131,6 @@ const CourseGrades = () => {
               </div>
             </div>
 
-            {/* Other Courses */}
             <div className="mt-10">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -200,4 +198,5 @@ const CourseGrades = () => {
   );
 };
 
-export default CourseGrades;
+export default AcademicCoursework;
+
