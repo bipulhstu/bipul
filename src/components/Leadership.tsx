@@ -55,12 +55,14 @@ const Leadership = () => {
   };
 
   return (
-    <section id="leadership" className="py-20 px-4 bg-gradient-subtle">
+    <section id="leadership" className="py-10 px-4 bg-gradient-subtle">
       <div className="container max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
+          {/**
           <Badge className="mb-4 text-primary bg-primary/10 border-primary/20">
             Activities
           </Badge>
+          **/}
           <h2 className="text-4xl font-bold mb-6 academic-gradient-text">
             Leadership and Voluntary Activities
           </h2>

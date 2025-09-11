@@ -91,12 +91,14 @@ const AcademicCredentials = () => {
   ];
 
   return (
-    <section id="academic-credentials" className="py-20 px-4">
+    <section id="academic-credentials" className="pt-10 pb-8 px-4">
       <div className="container max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
+          {/**
           <Badge className="mb-4 text-primary bg-primary/10 border-primary/20">
             Academic Background
           </Badge>
+          **/}
           <h2 className="text-4xl font-bold mb-6 academic-gradient-text">
             Academic Credentials
           </h2>

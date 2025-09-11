@@ -43,12 +43,14 @@ const WorkExperience = () => {
   ];
 
   return (
-    <section id="work-experience" className="py-20 px-4">
+    <section id="work-experience" className="pt-10 pb-8 px-4">
       <div className="container max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
+          {/**
           <Badge className="mb-4 text-primary bg-primary/10 border-primary/20">
             Work Experience
           </Badge>
+          **/}
           <h2 className="text-4xl font-bold mb-6 academic-gradient-text">
             Professional Experience
           </h2>

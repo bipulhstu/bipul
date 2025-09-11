@@ -32,12 +32,14 @@ const Publications = () => {
   ];
 
   return (
-    <section id="publications" className="py-20 px-4">
+    <section id="publications" className="py-10 px-4">
       <div className="container max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
+          {/**
           <Badge className="mb-4 text-primary bg-primary/10 border-primary/20">
             Publications
           </Badge>
+          **/}
           <h2 className="text-4xl font-bold mb-6 academic-gradient-text">
             Research Publications
           </h2>
